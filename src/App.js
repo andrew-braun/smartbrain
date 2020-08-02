@@ -88,7 +88,9 @@ class App extends Component {
             onInputChange={this.onInputChange}
           />
           <Rank />
-          <FaceRecognition imageUrl={this.state.imageUrl} />
+          <FaceRecognition 
+            imageUrl={this.state.imageUrl}
+            box={this.state.box} />
         </main>
       </div>
     );
