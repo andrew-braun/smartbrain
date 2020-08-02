@@ -1,7 +1,9 @@
 .mainNav {
     display: flex;
     width: 100%;
+    min-height: 11rem;
     justify-content: flex-end;
+    align-items: flex-start;
     text-align: right;
 }
 
@@ -11,4 +13,9 @@
     background-color: black;
     color: white;
     border-radius: 1rem;
+}
+
+.signOutButton:hover {
+    cursor: pointer;
+    opacity: 0.85;
 }

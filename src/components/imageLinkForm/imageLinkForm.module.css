@@ -1,0 +1,49 @@
+.imageLinkForm {
+    margin: 0.5rem auto;
+    padding: 2rem;
+    width: 80vw;
+    max-width: 40rem;
+    border-radius: 2rem;
+    background:
+    linear-gradient(135deg, hsla(190, 75%, 50%, 0.2) 21px, hsla(207, 75%, 48%, 0.5) 22px, hsl(207, 75%, 48%) 24px, transparent 24px, transparent 67px, hsl(207, 75%, 48%) 67px, hsl(207, 75%, 48%) 69px, transparent 69px),
+    linear-gradient(225deg, hsla(190, 75%, 50%, 0.2) 21px, hsla(207, 75%, 48%, 0.5) 22px, hsl(207, 75%, 48%) 24px, transparent 24px, transparent 67px, hsl(207, 75%, 48%) 67px, hsl(207, 75%, 48%) 69px, transparent 69px)0 64px;
+    background-color:hsla(190, 75%, 50%, 0.7);
+    background-size: 64px 128px;
+    box-shadow: .2rem .2rem .5rem 0 hsla(0, 0%, 100%, 0.65);
+}
+
+.formHeading {
+    margin: 0 0 1rem 0;
+}
+
+.formTextInput {
+    width: 50%;
+    margin: 0.5rem;
+    padding: .4rem;
+    border: none;
+    border-radius: .3rem;
+    background: hsla(0, 5%, 97%, 0.95);
+    opacity: 0.85;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.formTextInput:hover {
+    opacity: 1;
+}
+
+.formSubmitButton {
+    width: 15%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    background: black;
+    color: white;
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+
+.formSubmitButton:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transform: scale(1.03);
+}
