@@ -6,16 +6,3 @@
     align-items: flex-start;
     text-align: right;
 }
-
-.signOutButton {
-    padding: 1rem;
-    margin: .5rem 1rem;
-    background-color: black;
-    color: white;
-    border-radius: 1rem;
-}
-
-.signOutButton:hover {
-    cursor: pointer;
-    opacity: 0.85;
-}

@@ -1,0 +1,80 @@
+.signInForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 70vw;
+    margin: auto;
+    padding: 1rem;
+    box-shadow: .3rem .3rem .3rem .3rem hsla(0, 0%, 0%, 0.3);
+    border-radius: 1rem;
+    font-weight: 600;
+}
+
+input {
+    flex-grow: 1;
+    max-width: 25em;
+    border: none;
+    padding: 0.5rem;
+    margin: 0.3rem;
+    border-radius: 0.5rem;
+    opacity: 0.85;
+    transition: opacity .2s ease-in-out;
+}
+
+input:hover {
+    opacity: 1;
+}
+
+.signInElementContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.signInLabel {
+    min-width: 5em;
+    max-width: 25%;
+}
+
+#signInRememberContainer {
+    justify-content: center;
+}
+
+#signInRememberLabel {
+    min-width: max-content;
+}
+
+#remember {
+    max-width: min-content;
+}
+
+.signInButton {
+    padding: 1rem;
+    margin: .5rem 1rem;
+    border: none;
+    background: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 1rem;
+    transition: transform .3s ease-in-out;
+}
+
+.signInButton:hover {
+    cursor: pointer;
+    opacity: 0.75;
+    transform: scale(1.02);
+  }
+
+  #signUpButton {
+      color: white;
+      padding: .9rem;
+      background: transparent;
+      transition: color .3s ease-in-out, transform .3s ease-in-out;
+  }
+
+  #signUpButton:hover {
+    color: black;
+  }

@@ -4,7 +4,7 @@ import styles from "./navigation.module.css";
 const Navigation = () => {
     return (
         <nav className={styles.mainNav}>
-            <p className={styles.signOutButton}>Sign Out</p>
+            <button className={styles.signOutButton}>Sign Out</button>
         </nav>
     )
 }
