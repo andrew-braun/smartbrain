@@ -11,9 +11,9 @@ const Register = ({ onRouteChange }) => {
           <label
             className={styles.registerLabel}
             id={styles.registerNameLabel}
-            for={styles.registerName}
+            htmlFor={styles.registerName}
           >
-            Email
+            Name
           </label>
           <input
             className={styles.registerInput}
@@ -26,7 +26,7 @@ const Register = ({ onRouteChange }) => {
           <label
             className={styles.registerLabel}
             id={styles.registerEmailLabel}
-            for={styles.emailAddress}
+            htmlFor={styles.emailAddress}
           >
             Email
           </label>
@@ -41,7 +41,7 @@ const Register = ({ onRouteChange }) => {
           <label
             className={styles.registerLabel}
             id={styles.registerPasswordLabel}
-            for={styles.password}
+            htmlFor={styles.password}
           >
             Password
           </label>
@@ -57,7 +57,7 @@ const Register = ({ onRouteChange }) => {
                 className={styles.registerButton} 
                 id={styles.registerButton}
                 type="submit"
-                value="Sign in"
+                value="Register"
                 onClick={() => onRouteChange("home")}
                 />
         </div>

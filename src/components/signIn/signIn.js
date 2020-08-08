@@ -6,12 +6,12 @@ const SignIn = ({ onRouteChange }) => {
   return (
     <main className={styles.signInMain}>
       <form className={styles.signInForm}>
-        <legend className={styles.signInLegend}>Sign In </legend>
+        <legend className={styles.signInLegend}>Sign In</legend>
         <div className={styles.signInElementContainer}>
           <label
             className={styles.signInLabel}
             id={styles.signInEmailLabel}
-            for={styles.emailAddress}
+            htmlFor={styles.emailAddress}
           >
             Email
           </label>
@@ -26,7 +26,7 @@ const SignIn = ({ onRouteChange }) => {
           <label
             className={styles.signInLabel}
             id={styles.signInPasswordLabel}
-            for={styles.password}
+            htmlFor={styles.password}
           >
             Password
           </label>
@@ -40,7 +40,9 @@ const SignIn = ({ onRouteChange }) => {
         <div className={styles.signInElementContainer}>
             <button 
             className={styles.registerButton} 
-            id={styles.registerButton}>
+            id={styles.registerButton}
+            onClick={() => onRouteChange("register")}
+            >
                 Register
             </button>
 
