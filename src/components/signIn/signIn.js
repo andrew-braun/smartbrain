@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./signin.module.css";
 import "./signin.module.css";
 
-const SignIn = () => {
+const SignIn = ({ onRouteChange }) => {
   return (
     <main className={styles.signInMain}>
       <form className={styles.signInForm}>
@@ -38,12 +38,20 @@ const SignIn = () => {
         </div>
         
         <div className={styles.signInElementContainer}>
-            <a href="#0" className={styles.signUpButton} id={styles.signUpButton}>
+            <button 
+            className={styles.registerButton} 
+            id={styles.registerButton}>
                 Register
-            </a>
-            <a href="#0" className={styles.signInButton} id={styles.signInButton}>
-                Sign In
-            </a>
+            </button>
+
+            <input 
+                className={styles.signInButton} 
+                id={styles.signInButton}
+                type="submit"
+                value="Sign in"
+                onClick={() => onRouteChange("home")}
+                />
+
         </div>
       </form>
     </main>

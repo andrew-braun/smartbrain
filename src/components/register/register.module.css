@@ -1,4 +1,4 @@
-.signInForm {
+.registrationForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,23 +27,23 @@ input:hover {
     opacity: 1;
 }
 
-.signInElementContainer {
+.registerElementContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
 
-.signInLabel {
+.registerLabel {
     min-width: 5em;
     max-width: 25%;
 }
 
-#signInRememberContainer {
+#registerRememberContainer {
     justify-content: center;
 }
 
-#signInRememberLabel {
+#registerRememberLabel {
     min-width: max-content;
 }
 
@@ -51,7 +51,7 @@ input:hover {
     max-width: min-content;
 }
 
-.signInButton {
+.registerButton {
     padding: 1rem;
     margin: .5rem 1rem;
     border: none;
@@ -62,19 +62,19 @@ input:hover {
     transition: transform .3s ease-in-out;
 }
 
-.signInButton:hover {
+.registerButton:hover {
     cursor: pointer;
     opacity: 0.75;
     transform: scale(1.02);
   }
 
-  #registerButton {
+  #signUpButton {
       color: white;
       padding: .9rem;
       background: transparent;
       transition: color .3s ease-in-out, transform .3s ease-in-out;
   }
 
-  #registerButton:hover {
+  #signUpButton:hover {
     color: black;
   }

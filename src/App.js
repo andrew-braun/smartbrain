@@ -6,8 +6,10 @@ import Logo from "./components/logo/logo.js";
 import ImageLinkForm from "./components/imageLinkForm/imageLinkForm";
 import FaceRecognition from "./components/faceRecognition/faceRecognition";
 import Rank from "./components/rank/rank.js";
-import "./App.css";
 import SignIn from "./components/signIn/signIn";
+import Register from "./components/register/register"
+import "./App.css";
+
 
 const app = new Clarifai.App({
   apiKey: "57c008f0aadb46e4a75b6ae94fe85334",
@@ -76,15 +78,22 @@ class App extends Component {
     );
   };
 
+  onRouteChange = (route) => {
+    this.setState({route: route})
+  }
+
   render() {
     return (
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
         <header className="app-header">
-          <Navigation />
+          <Navigation 
+            onRouteChange={this.onRouteChange}
+            />
         </header>
         { this.state.route === 'signin' 
-        ? <SignIn />
+        ? <SignIn 
+            onRouteChange={this.onRouteChange}/>
         :  <div> 
             <Logo /> 
               <main className="app-container">
