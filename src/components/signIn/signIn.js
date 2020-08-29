@@ -2,62 +2,86 @@ import React from "react";
 import styles from "./signin.module.css";
 import "./signin.module.css";
 
-const SignIn = ({ onRouteChange }) => {
-  return (
-    <main className={styles.signInMain}>
-      <form className={styles.signInForm}>
-        <legend className={styles.signInLegend}>Sign In</legend>
-        <div className={styles.signInElementContainer}>
-          <label
-            className={styles.signInLabel}
-            id={styles.signInEmailLabel}
-            htmlFor={styles.emailAddress}
-          >
-            Email
-          </label>
-          <input
-            className={styles.signInInput}
-            id={styles.emailAddress}
-            type="email"
-            placeholder="Enter your email address"
-          />
-        </div>
-        <div className={styles.signInElementContainer}>
-          <label
-            className={styles.signInLabel}
-            id={styles.signInPasswordLabel}
-            htmlFor={styles.password}
-          >
-            Password
-          </label>
-          <input 
-            className={styles.signInInput} 
-            id={styles.password} 
-            placeholder="Enter your password"
-          />
-        </div>
-        
-        <div className={styles.signInElementContainer}>
-            <button 
-            className={styles.registerButton} 
-            id={styles.registerButton}
-            onClick={() => onRouteChange("register")}
+class SignIn extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signInEmail: "",
+      signInPassword: ""
+    }
+  }
+  onEmailChange = (event) => {
+    this.setState({signInEmail: event.target.value})
+  }
+  onPasswordChange = (event) => {
+    this.setState({signInPassword: event.target.value})
+  }
+  onSubmitSignIn = () => {
+    console.log(this.state)
+  }
+  render() {
+    const { onRouteChange } = this.props;
+    const { onEmailChange, onPasswordChange, onSubmitSignIn } =  this;
+    return (
+      <main className={styles.signInMain}>
+        <form className={styles.signInForm}>
+          <legend className={styles.signInLegend}>Sign In</legend>
+          <div className={styles.signInElementContainer}>
+            <label
+              className={styles.signInLabel}
+              id={styles.signInEmailLabel}
+              htmlFor={styles.emailAddress}
             >
-                Register
-            </button>
-
+              Email
+            </label>
+            <input
+              className={styles.signInInput}
+              id={styles.emailAddress}
+              type="email"
+              placeholder="Enter your email address"
+              onChange={onEmailChange}
+            />
+          </div>
+          <div className={styles.signInElementContainer}>
+            <label
+              className={styles.signInLabel}
+              id={styles.signInPasswordLabel}
+              htmlFor={styles.password}
+            >
+              Password
+            </label>
             <input 
-                className={styles.signInButton} 
-                id={styles.signInButton}
-                type="submit"
-                value="Sign in"
-                onClick={() => onRouteChange("home")}
-                />
+              className={styles.signInInput} 
+              id={styles.password} 
+              placeholder="Enter your password"
+              onChange = {onPasswordChange}
+            />
+          </div>
+          
+          <div className={styles.signInElementContainer}>
+              <input
+              type="button"
+              value="Register"
+              className={styles.registerButton} 
+              id={styles.registerButton}
+              tabIndex="-2"
+              onClick={() => onRouteChange("register")}
+              />
 
-        </div>
-      </form>
-    </main>
-  );
+              <input 
+                  className={styles.signInButton} 
+                  id={styles.signInButton}
+                  type="submit"
+                  value="Sign in"
+                  tabIndex="-1"
+                  onClick={() => onRouteChange("home"), onSubmitSignIn}
+                  />
+
+          </div>
+        </form>
+      </main>
+    );
+  }
 };
 
 export default SignIn;

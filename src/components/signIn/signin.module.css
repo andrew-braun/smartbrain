@@ -64,7 +64,7 @@ input:hover {
     transition: transform .3s ease-in-out;
 }
 
-.signInButton:hover {
+.signInButton:hover, #registerButton:hover {
     cursor: pointer;
     opacity: 0.75;
     transform: scale(1.02);
@@ -73,7 +73,7 @@ input:hover {
   #registerButton {
       color: white;
       padding: .9rem;
-      background: transparent;
+      background: hsla(0, 0%, 0%, 0.5);
       transition: color .3s ease-in-out, transform .3s ease-in-out;
   }
 
