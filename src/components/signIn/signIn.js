@@ -17,14 +17,27 @@ class SignIn extends React.Component {
     this.setState({signInPassword: event.target.value})
   }
   onSubmitSignIn = () => {
-    console.log(this.state)
+    fetch("http://localhost:3000/signin", {
+      method: "post",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        email: this.state.signInEmail,
+        password: this.state.signInPassword
+      })
+    }).then(response => response.json())
+      .then(data => {
+        if (data === "success") {
+          this.props.onRouteChange("home");
+          console.log("success")
+        }
+      })
   }
   render() {
     const { onRouteChange } = this.props;
     const { onEmailChange, onPasswordChange, onSubmitSignIn } =  this;
     return (
       <main className={styles.signInMain}>
-        <form className={styles.signInForm}>
+        <div className={styles.signInForm}>
           <legend className={styles.signInLegend}>Sign In</legend>
           <div className={styles.signInElementContainer}>
             <label
@@ -74,11 +87,11 @@ class SignIn extends React.Component {
                   type="submit"
                   value="Sign in"
                   tabIndex="-1"
-                  onClick={() => onRouteChange("home"), onSubmitSignIn}
+                  onClick={onSubmitSignIn}
                   />
 
           </div>
-        </form>
+        </div>
       </main>
     );
   }
