@@ -25,14 +25,10 @@ class SignIn extends React.Component {
         password: this.state.signInPassword
       })
     }).then(response => response.json())
-      .then(data => {
-        if (data === "success") {
+      .then(user => {
+        if (user.id) {
           this.props.onRouteChange("home");
-          fetch(`http://localhost:3000/profile/${1}`, {
-            method: "get",
-            headers: {"Content-Type": "application/json"}
-          }).then(response => response.json())
-          .then(data => this.props.loadUser(data))
+          this.props.loadUser(user);
         }
       })
   }

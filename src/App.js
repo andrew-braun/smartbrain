@@ -39,7 +39,7 @@ class App extends Component {
     this.state = {
       input: "",
       imageUrl: "",
-      box: [],
+      box: {},
       route: "signin",
       isSignedIn: false,
       user: {
@@ -138,6 +138,7 @@ class App extends Component {
               />
               <Rank 
                 name={this.state.user.name}
+                entries={this.state.user.entries}
                 />
               <FaceRecognition imageUrl={imageUrl} box={box} />
             </main>
