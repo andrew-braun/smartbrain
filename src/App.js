@@ -50,16 +50,17 @@ class App extends Component {
         joined: ""
       }
     };
+    // console.log(this.state.user.name)
   }
 
   loadUser = (data) => {
-    this.setState({
+    this.setState({user: {
       email: data.email,
       name: data.name,
       id: data.id,
       entries: data.entries,
       joined: data.joined
-    })
+    }})
   }
 
   onInputChange = (event) => {
@@ -91,12 +92,21 @@ class App extends Component {
     this.setState({ imageUrl: this.state.input });
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, `${this.state.input}`)
-      .then((response) =>
+      .then((response) => {
+        if (response) {
+          fetch("http://localhost:3000/image", {
+            method: "put",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          })
+        }
         this.generateBoundingBox(
-          this.calculateFaceLocation(response)
-        ).catch((err) => console.log(err))
-      );
-  };
+          this.calculateFaceLocation(response))
+        })
+          .catch((err) => console.log(err))
+    };
 
   onRouteChange = (route) => {
     if (route === "signout" || route === "signin") {
@@ -126,12 +136,16 @@ class App extends Component {
                 onButtonSubmit={this.onButtonSubmit}
                 onInputChange={this.onInputChange}
               />
-              <Rank />
+              <Rank 
+                name={this.state.user.name}
+                />
               <FaceRecognition imageUrl={imageUrl} box={box} />
             </main>
           </div>
         ) : route === "signin" ? (
-          <SignIn onRouteChange={this.onRouteChange} />
+          <SignIn onRouteChange={this.onRouteChange} 
+            loadUser={this.loadUser}
+          />
         ) : (
           <Register 
             onRouteChange={this.onRouteChange} 
