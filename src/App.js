@@ -100,7 +100,10 @@ class App extends Component {
             body: JSON.stringify({
               id: this.state.user.id
             })
-          })
+          }).then(response => response.json())
+            .then(count => {
+              this.setState(Object.assign(this.state.user, { entries: count }))
+            })
         }
         this.generateBoundingBox(
           this.calculateFaceLocation(response))
