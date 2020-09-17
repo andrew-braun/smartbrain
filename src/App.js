@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Clarifai from "clarifai";
 import Particles from "react-particles-js";
 import Navigation from "./components/navigation/navigation.js";
 import Logo from "./components/logo/logo.js";
@@ -9,11 +8,6 @@ import Rank from "./components/rank/rank.js";
 import SignIn from "./components/signIn/signIn";
 import Register from "./components/register/register";
 import "./App.css";
-
-/* Tap into clarifai face recognition API */
-const app = new Clarifai.App({
-  apiKey: "57c008f0aadb46e4a75b6ae94fe85334",
-});
 
 /* Particle background */
 const particlesOptions = {
@@ -48,7 +42,7 @@ const initialState = {
     id: "",
     entries: 0,
     joined: "",
-  }
+  },
 };
 
 class App extends Component {
@@ -107,8 +101,14 @@ class App extends Component {
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
     /* Uses Clarifai npm library to process response */
-    app.models
-      .predict(Clarifai.FACE_DETECT_MODEL, `${this.state.input}`)
+    fetch("http://localhost:3000/imageurl", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+      .then(response => response.json())
       .then((response) => {
         /* If response received, put box on returned coordinates, update user entry count */
         if (response) {
@@ -123,7 +123,7 @@ class App extends Component {
             .then((count) => {
               this.setState(Object.assign(this.state.user, { entries: count }));
             })
-            .catch(err => console.log(err))
+            .catch((err) => console.log(err));
         }
         this.generateBoundingBox(this.calculateFaceLocation(response));
       })
@@ -171,9 +171,8 @@ class App extends Component {
               <FaceRecognition imageUrl={imageUrl} box={box} />
             </main>
           </div>
-        ) 
-        /* If route is sign in or register instead of home, direct to sign in/register page */
-        : route === "signin" ? (
+        ) : /* If route is sign in or register instead of home, direct to sign in/register page */
+        route === "signin" ? (
           <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
         ) : (
           <Register

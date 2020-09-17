@@ -7,8 +7,11 @@ class Register extends React.Component {
     super(props);
     this.state = {
       registerName: "",
+      nameValid: "",
       registerEmail: "",
-      registerPassword: ""
+      emailValid: "",
+      registerPassword: "",
+      passwordValid: ""
     }
   }
   onNameChange = (event) => {
@@ -18,7 +21,14 @@ class Register extends React.Component {
     this.setState({registerEmail: event.target.value})
   }
   onPasswordChange = (event) => {
-    this.setState({registerPassword: event.target.value})
+    if (event.target.value.length >= 3) {
+      this.setState({
+        passwordValid: true,
+        registerPassword: event.target.value,
+      })
+    } else {
+      this.setState({passwordValid: false})
+    }
   }
   onRegisterSubmit = () => {
     fetch("http://localhost:3000/register", {
@@ -31,7 +41,7 @@ class Register extends React.Component {
       })
     }).then(response => response.json())
       .then(user => {
-        if (user) { 
+        if (user.id) { 
           this.props.loadUser(user)
           this.props.onRouteChange("home")
         }
