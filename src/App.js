@@ -10,10 +10,12 @@ import SignIn from "./components/signIn/signIn";
 import Register from "./components/register/register";
 import "./App.css";
 
+/* Tap into clarifai face recognition API */
 const app = new Clarifai.App({
   apiKey: "57c008f0aadb46e4a75b6ae94fe85334",
 });
 
+/* Particle background */
 const particlesOptions = {
   particles: {
     number: {
@@ -33,49 +35,61 @@ const particlesOptions = {
   },
 };
 
+/* Set initial state; reset to this on signout */
+const initialState = {
+  input: "",
+  imageUrl: "",
+  box: {},
+  route: "signin",
+  isSignedIn: false,
+  user: {
+    email: "",
+    name: "",
+    id: "",
+    entries: 0,
+    joined: "",
+  }
+};
+
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      input: "",
-      imageUrl: "",
-      box: {},
-      route: "signin",
-      isSignedIn: false,
-      user: {
-        email: "",
-        name: "",
-        id: "",
-        entries: 0,
-        joined: ""
-      }
-    };
-    // console.log(this.state.user.name)
+    this.state = initialState;
   }
 
+  /* Load user data into state on signin or register */
   loadUser = (data) => {
-    this.setState({user: {
-      email: data.email,
-      name: data.name,
-      id: data.id,
-      entries: data.entries,
-      joined: data.joined
-    }})
-  }
+    this.setState({
+      user: {
+        email: data.email,
+        name: data.name,
+        id: data.id,
+        entries: data.entries,
+        joined: data.joined,
+      },
+    });
+  };
 
+  /* Grabbing entered image URL to send to API */
   onInputChange = (event) => {
     this.setState({
       input: event.target.value,
     });
   };
 
+  /* Using Clarifai response data to create a box corresponding to the four corner points
+  of the rectangle surrounding a single detected face */
   calculateFaceLocation = (data) => {
+    /* Getting coordinates from Clarifai response */
     const clarifaiFace =
       data.outputs[0].data.regions[0].region_info.bounding_box;
+
+    /* Getting data on the submitted image for box calculations */
     const image = document.querySelector("#input-image");
     const width = Number(image.width);
     const height = Number(image.height);
 
+    /* Using the percentages returned by Clarifai to calculate points on image */
     return {
       leftCol: clarifaiFace.left_col * width,
       topRow: clarifaiFace.top_row * height,
@@ -84,36 +98,43 @@ class App extends Component {
     };
   };
 
+  /* Function to wrap calculateFaceLocation and send result to state */
   generateBoundingBox = (box) => {
     this.setState({ box: box });
   };
 
+  /* Calls Clarifai image API on submit button press */
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
+    /* Uses Clarifai npm library to process response */
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, `${this.state.input}`)
       .then((response) => {
+        /* If response received, put box on returned coordinates, update user entry count */
         if (response) {
           fetch("http://localhost:3000/image", {
             method: "put",
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              id: this.state.user.id
+              id: this.state.user.id,
+            }),
+          })
+            .then((response) => response.json())
+            .then((count) => {
+              this.setState(Object.assign(this.state.user, { entries: count }));
             })
-          }).then(response => response.json())
-            .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count }))
-            })
+            .catch(err => console.log(err))
         }
-        this.generateBoundingBox(
-          this.calculateFaceLocation(response))
-        })
-          .catch((err) => console.log(err))
-    };
+        this.generateBoundingBox(this.calculateFaceLocation(response));
+      })
+      .catch((err) => console.log(err));
+  };
 
+  /* Detect route changes and change state accordingly for future conditional rendering */
   onRouteChange = (route) => {
+    /* On sign-out, reset state; on sign-in set isSignedIn to true*/
     if (route === "signout" || route === "signin") {
-      this.setState({ isSignedIn: false });
+      this.setState(initialState);
     } else if (route === "home") {
       this.setState({ isSignedIn: true });
     }
@@ -131,30 +152,34 @@ class App extends Component {
             isSignedIn={isSignedIn}
           />
         </header>
+        {/* If route in state is home, render home */}
         {route === "home" ? (
           <div>
             <Logo />
             <main className="app-container">
+              {/* Form for entering and submitting image link */}
               <ImageLinkForm
                 onButtonSubmit={this.onButtonSubmit}
                 onInputChange={this.onInputChange}
               />
-              <Rank 
+              {/* Form for counting image submits */}
+              <Rank
                 name={this.state.user.name}
                 entries={this.state.user.entries}
-                />
+              />
+              {/* Container for submitted picture and face detection box */}
               <FaceRecognition imageUrl={imageUrl} box={box} />
             </main>
           </div>
-        ) : route === "signin" ? (
-          <SignIn onRouteChange={this.onRouteChange} 
+        ) 
+        /* If route is sign in or register instead of home, direct to sign in/register page */
+        : route === "signin" ? (
+          <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
+        ) : (
+          <Register
+            onRouteChange={this.onRouteChange}
             loadUser={this.loadUser}
           />
-        ) : (
-          <Register 
-            onRouteChange={this.onRouteChange} 
-            loadUser={this.loadUser}
-            />
         )}
       </div>
     );
