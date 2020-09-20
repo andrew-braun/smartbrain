@@ -101,7 +101,7 @@ class App extends Component {
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
     /* Uses Clarifai npm library to process response */
-    fetch("http://localhost:3000/imageurl", {
+    fetch("https://cryptic-journey-42100.herokuapp.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -112,7 +112,7 @@ class App extends Component {
       .then((response) => {
         /* If response received, put box on returned coordinates, update user entry count */
         if (response) {
-          fetch("http://localhost:3000/image", {
+          fetch("https://cryptic-journey-42100.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
