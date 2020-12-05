@@ -1,82 +1,92 @@
+.signInMain {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
 .signInForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    max-width: 70vw;
-    margin: auto;
-    padding: 1rem;
-    box-shadow: .3rem .3rem .3rem .3rem hsla(0, 0%, 0%, 0.3);
-    border-radius: 1rem;
-    font-weight: 600;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex: 1 1 auto;
+	width: clamp(320px, 70vw, 40rem);
+	max-height: 20rem;
+	padding: 1rem;
+	box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem hsla(0, 0%, 0%, 0.3);
+	border-radius: 1rem;
+	font-weight: 600;
 }
 
 input {
-    flex-grow: 1;
-    max-width: 25em;
-    border: none;
-    padding: 0.5rem;
-    margin: 0.3rem;
-    background: hsla(0, 0%, 100%, 0.2);
-    border: 1px solid black;
-    border-radius: 0.2rem;
-    color: black;
-    transition: background .2s ease-in-out;
+	flex-grow: 1;
+	max-width: 25em;
+	border: none;
+	padding: 0.5rem;
+	margin: 0.3rem;
+	background: hsla(0, 0%, 100%, 0.2);
+	border: 1px solid black;
+	border-radius: 0.2rem;
+	color: black;
+	transition: background 0.2s ease-in-out;
 }
 
 input:hover {
-    background: hsla(0, 0%, 100%, 0.4);
+	background: hsla(0, 0%, 100%, 0.4);
 }
 
 .signInElementContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .signInLabel {
-    min-width: 5em;
-    max-width: 25%;
+	min-width: 5em;
+	max-width: 25%;
 }
 
 #signInRememberContainer {
-    justify-content: center;
+	justify-content: center;
 }
 
 #signInRememberLabel {
-    min-width: max-content;
+	min-width: max-content;
 }
 
 #remember {
-    max-width: min-content;
+	max-width: min-content;
 }
 
 .signInButton {
-    padding: 1rem;
-    margin: .5rem 1rem;
-    border: none;
-    background: black;
-    color: white;
-    text-decoration: none;
-    border-radius: 1rem;
-    transition: transform .3s ease-in-out;
+	padding: 1rem;
+	margin: 0.5rem 1rem;
+	border: none;
+	background: black;
+	color: white;
+	text-decoration: none;
+	border-radius: 1rem;
+	transition: transform 0.3s ease-in-out;
 }
 
-.signInButton:hover, #registerButton:hover {
-    cursor: pointer;
-    opacity: 0.75;
-    transform: scale(1.02);
-  }
+.signInButton:hover,
+#registerButton:hover {
+	cursor: pointer;
+	opacity: 0.75;
+	transform: scale(1.02);
+}
 
-  #registerButton {
-      color: white;
-      padding: .9rem;
-      background: hsla(0, 0%, 0%, 0.5);
-      transition: color .3s ease-in-out, transform .3s ease-in-out;
-  }
+#registerButton {
+	color: white;
+	padding: 0.9rem;
+	background: hsla(0, 0%, 0%, 0.5);
+	transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
 
-  #registerButton:hover {
-    color: black;
-  }
+#registerButton:hover {
+	color: black;
+}
