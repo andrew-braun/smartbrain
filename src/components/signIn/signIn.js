@@ -10,6 +10,13 @@ class SignIn extends React.Component {
 			signInPassword: "",
 		};
 	}
+	componentDidMount() {
+		document.addEventListener("keydown", this.onKeyDown.bind(this));
+	}
+	componentWillUnmount() {
+		document.removeEventListener("keydown", this.onKeyDown.bind(this));
+	}
+
 	onEmailChange = (event) => {
 		this.setState({ signInEmail: event.target.value });
 	};
@@ -33,6 +40,15 @@ class SignIn extends React.Component {
 				}
 			});
 	};
+	onKeyDown(event) {
+		if (
+			event.key === "Enter" &&
+			this.state.signInEmail &&
+			this.state.signInPassword
+		) {
+			this.onSubmitSignIn();
+		}
+	}
 	render() {
 		const { onRouteChange } = this.props;
 		const { onEmailChange, onPasswordChange, onSubmitSignIn } = this;

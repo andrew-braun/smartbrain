@@ -21,6 +21,10 @@
 	font-weight: 600;
 }
 
+.signInLegend {
+	font-size: 2rem;
+}
+
 input {
 	flex-grow: 1;
 	max-width: 25em;

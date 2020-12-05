@@ -35,9 +35,11 @@ The backend is, admittedly, not very useful and/or necessary, but it's a functio
 
 ## Planned Features
 
-- Optional registration/login
+- Optional registration/login (Done!)
 - Code refactor
 - Appearance tweaks
 - Smoother transitions
-- Keypress login/detect
+- Keypress login/detect (Done!)
+- Add login error message
 - Don't increment rank with empty input
+- Add other AI functionality
