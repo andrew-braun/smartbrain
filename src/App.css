@@ -1,20 +1,37 @@
+#root {
+	height: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	text-align: center;
 }
 
 .app-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .particles {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.app-header {
+	width: 100%;
+	max-height: 6rem;
 }

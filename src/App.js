@@ -155,22 +155,20 @@ class App extends Component {
 				</header>
 				{/* If route in state is home, render home */}
 				{route === "home" ? (
-					<div>
-						<main className="app-container">
-							{/* Form for entering and submitting image link */}
-							<ImageLinkForm
-								onButtonSubmit={this.onButtonSubmit}
-								onInputChange={this.onInputChange}
-							/>
-							{/* Form for counting image submits */}
-							<Rank
-								name={this.state.user.name}
-								entries={this.state.user.entries}
-							/>
-							{/* Container for submitted picture and face detection box */}
-							<FaceRecognition imageUrl={imageUrl} box={box} />
-						</main>
-					</div>
+					<main className="app-container">
+						{/* Form for entering and submitting image link */}
+						<ImageLinkForm
+							onButtonSubmit={this.onButtonSubmit}
+							onInputChange={this.onInputChange}
+						/>
+						{/* Form for counting image submits */}
+						<Rank
+							name={this.state.user.name}
+							entries={this.state.user.entries}
+						/>
+						{/* Container for submitted picture and face detection box */}
+						<FaceRecognition imageUrl={imageUrl} box={box} />
+					</main>
 				) : /* If route is sign in or register instead of home, direct to sign in/register page */
 				route === "signin" ? (
 					<SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser} />

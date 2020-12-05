@@ -1,29 +1,37 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
 body {
-  margin: 0;
-  font-family: 'Courier New', Courier, monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(90deg, hsl(207, 75%, 48%), hsl(190, 75%, 50%));
+	height: 100%;
+	margin: 0;
+	font-family: "Courier New", Courier, monospace;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: linear-gradient(90deg, hsl(207, 75%, 48%), hsl(190, 75%, 50%));
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
-
 button {
-  padding: 1rem;
-  margin: .5rem 1rem;
-  border: none;
-  background-color: black;
-  color: white;
-  border-radius: 1rem;
-  transition: transform .3s ease-in-out;
+	padding: 1rem;
+	margin: 0.5rem 1rem;
+	border: none;
+	background-color: black;
+	color: white;
+	border-radius: 1rem;
+	transition: transform 0.3s ease-in-out;
 }
 
 button:hover {
-  cursor: pointer;
-  opacity: 0.75;
-  transform: scale(1.02);
+	cursor: pointer;
+	opacity: 0.75;
+	transform: scale(1.02);
 }
